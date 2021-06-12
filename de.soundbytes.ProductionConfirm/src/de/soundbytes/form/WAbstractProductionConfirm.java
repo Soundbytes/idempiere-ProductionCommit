@@ -52,19 +52,19 @@ import org.zkoss.zk.ui.util.Clients;
 import de.soundbytes.utils.Util;
 import org.adempiere.webui.adwindow.StatusBar;
 
-public class WProductionConfirm extends ConfirmForm implements IFormController, EventListener<Event> {
+public abstract class WAbstractProductionConfirm extends ConfirmForm implements IFormController, EventListener<Event> {
 
 	private WQuickADFormProdConfirm form;
 	
 	/**	Logger			*/
-	private static CLogger log = CLogger.getCLogger(WProductionConfirm.class);
+	protected static CLogger log = CLogger.getCLogger(WAbstractProductionConfirm.class);
 	
 	private Label productionLabel = new Label();
 	private Listbox productionListbox = ListboxFactory.newDropdownListbox();
 	private Label   docActionLabel = new Label();
 	private WTableDirEditor docActionEditor;
 	private Checkbox keepOpenCheckbox = new Checkbox();
-	private GridTab tab;
+	protected GridTab tab;
 
 	private int productionID = 0;
 	private ArrayList<Integer> prodIDs = null;
@@ -73,7 +73,7 @@ public class WProductionConfirm extends ConfirmForm implements IFormController, 
 	private String documentNo;
 
 
-	public WProductionConfirm()
+	public WAbstractProductionConfirm()
 	{
 		Component activeWindow = SessionManager.getAppDesktop().getActiveWindow();
 		ADWindowContent windowContent = ADWindow.findADWindow(activeWindow).getADWindowContent();
@@ -363,6 +363,7 @@ public class WProductionConfirm extends ConfirmForm implements IFormController, 
 		
 		String docActionSelected = (String)docActionEditor.getValue();
 		if (DocAction.ACTION_Complete.equals(docActionSelected) || DocAction.ACTION_Close.equals(docActionSelected)) {
+			beforeComplete();
 			status = new StringBuilder("Production ")
 					.append(documentNo);
 			MProduction production = new MProduction(ctx, productionID, trxName);
@@ -380,6 +381,8 @@ public class WProductionConfirm extends ConfirmForm implements IFormController, 
 		return status == null ? null : status.toString();
 	}	//	Movement Confirm
 	
+	abstract protected void beforeComplete();
+
 	void dispose() {
 		Clients.clearBusy();
 		form.dispose();

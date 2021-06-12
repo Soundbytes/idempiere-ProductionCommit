@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: QuickGridWindow
-Bundle-SymbolicName: de.soundbytes.ProductionConfirm
+Bundle-Name: de.soundbytes.productionconfirm
+Bundle-SymbolicName: de.soundbytes.productionconfirm
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: soundbytes.de
 Automatic-Module-Name: QuickGridWindow

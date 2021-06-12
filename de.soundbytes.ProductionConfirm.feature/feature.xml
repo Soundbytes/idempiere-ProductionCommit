@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="de.soundbytes.ProductConfirm.feature"
-      label="ProductConfirmFeature"
+      id="de.soundbytes.productconfirm.feature"
+      label="de.soundbytes.productconfirm.feature"
       version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
@@ -17,7 +17,7 @@
    </license>
 
    <plugin
-         id="de.soundbytes.ProductionConfirm"
+         id="de.soundbytes.productionconfirm"
          download-size="0"
          install-size="0"
          version="0.0.0"
