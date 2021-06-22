@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (C) 2016 Logilite Technologies LLP								  *
+ * Copyright (C) 2021 Andreas Sumerauer                                       *
  * This program is free software; you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
  * by the Free Software Foundation. This program is distributed in the hope   *
@@ -53,8 +53,9 @@ import org.zkoss.zul.Columns;
 /**
  * Quick entry form
  * 
- * @author Logilite Technologies
- * @since Nov 03, 2017
+ * @author Andreas Sumerauer
+ * 
+ * Based on WQuickForm by Logilite
  */
 public class WQuickADForm extends ADForm implements IQuickForm
 {

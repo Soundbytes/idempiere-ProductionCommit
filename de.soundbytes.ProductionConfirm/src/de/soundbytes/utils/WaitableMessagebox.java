@@ -1,3 +1,16 @@
+/******************************************************************************
+ * Copyright (C) 2021 Andreas Sumerauer                                       *
+ * This program is free software; you can redistribute it and/or modify it    *
+ * under the terms version 2 of the GNU General Public License as published   *
+ * by the Free Software Foundation. This program is distributed in the hope   *
+ * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
+ * See the GNU General Public License for more details.                       *
+ * You should have received a copy of the GNU General Public License along    *
+ * with this program; if not, write to the Free Software Foundation, Inc.,    *
+ * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
+ *****************************************************************************/
+
 package de.soundbytes.utils;
 
 import java.util.concurrent.CountDownLatch;
@@ -7,9 +20,9 @@ import org.adempiere.webui.component.Messagebox;
 
 public class WaitableMessagebox {
 	public CountDownLatch latch;
-	int m_result = 111;
+	private int m_result = 111;
 	
-	int showMe(String message, String title, int buttons, String icon) {
+	private int showMe(String message, String title, int buttons, String icon) {
 		latch = new CountDownLatch(1);
 		AEnv.executeAsyncDesktopTask(new Runnable() {
 		@Override
@@ -29,18 +42,16 @@ public class WaitableMessagebox {
 						}, 
 						false);
 			}
-			
 		});
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return m_result;
 	}
 	
-	public static int showDialog(String message, String title, int buttons, String icon) {
+	public static int show(String message, String title, int buttons, String icon) {
 		return new WaitableMessagebox().showMe(message, title, buttons, icon);
 	}
 }
